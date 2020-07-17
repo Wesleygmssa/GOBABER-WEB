@@ -1,6 +1,6 @@
 ### Gobaber 
 - Front-end
-- node.js em desenvolvimento!
+- ReactJs em desenvolvimento!
 
 ### Iniciar projeto
 - yarn start
