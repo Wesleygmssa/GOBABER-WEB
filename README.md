@@ -6,7 +6,7 @@
 - yarn start
 
 <p align="center">
-  <img src="gobaber.png"/>
+   <img src="01.PNG" >
 </p>
 
 
