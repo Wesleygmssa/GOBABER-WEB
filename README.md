@@ -1,11 +1,12 @@
 ### Gobaber 
--Back-end node.js em desenvolvimento!
+- Back-end  
+- node.js em desenvolvimento!
 
 ### Inicar projeto
--yarn start
+- yarn start
 
 <p align="center">
-  <img src="bobaber.PNG"/>
+  <img src="bobaber.png"/>
 </p>
 
 
