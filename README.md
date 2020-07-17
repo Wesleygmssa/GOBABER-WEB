@@ -1,5 +1,5 @@
 ### Gobaber 
-- Front-end ReactJs
+- Front-end com ReactJs
 - Em desenvolvimento!
 
 ### Iniciar projeto
