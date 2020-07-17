@@ -1,5 +1,5 @@
 ### Gobaber 
-- Back-end  
+- Front-end
 - node.js em desenvolvimento!
 
 ### Iniciar projeto
