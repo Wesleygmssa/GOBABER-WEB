@@ -2,7 +2,7 @@
 - Back-end  
 - node.js em desenvolvimento!
 
-### Inicar projeto
+### Iniciar projeto
 - yarn start
 
 <p align="center">
