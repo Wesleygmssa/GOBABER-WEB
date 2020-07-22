@@ -21,7 +21,6 @@ align-items: center;
 & + div {
 margin-top: 8px;
 }
-
 ${props => props.isErrored && css ` /* SE HOUVER FOCUS INSERIR A COR NO INPUT */
     border-color:#C53030; 
 ` }
@@ -34,6 +33,7 @@ ${props => props.isFocused && css ` /* SE HOUVER FOCUS INSERIR A COR NO INPUT */
 ${props => props.isFilled && css ` /* SE HOUVER FOCUS INSERIR A COR NO INPUT */
     color:#ff9000; 
 ` }
+
 
 
 

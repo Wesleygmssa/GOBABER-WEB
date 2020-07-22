@@ -1,13 +1,13 @@
-import styled from 'styled-components';
+import styled from 'styled-components'; // TARABLHANDO COM CSS
 import signInBackgroundImg from '../../assets/sign-in-background.png';
-import { shade }  from  'polished';
+import { shade }  from  'polished';// TRABALHANDO COM CORES
 
 export const Container = styled.div `
     height: 100vh;
     display: flex;
-    align-items: stretch; /* tmanho total da pagina */
+    align-items: stretch; /* tAmanho total da pagina */
 
-`
+`;
 
 export const Content = styled.div `
     display: flex;
@@ -60,7 +60,7 @@ export const Content = styled.div `
                 
             }
     }
-` 
+` ;
 
 export const Background = styled.div `
     flex: 1;
@@ -68,4 +68,4 @@ export const Background = styled.div `
     background-size: cover;
 
 
-    `
+    `;

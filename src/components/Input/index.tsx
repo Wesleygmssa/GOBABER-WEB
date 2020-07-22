@@ -1,18 +1,18 @@
 import React, {InputHTMLAttributes, useEffect, useRef, useState, useCallback} from 'react';
-import {IconBaseProps} from 'react-icons';
+import {IconBaseProps} from 'react-icons';// TODAS PROPRIEDAEDS QUE ICONE DEVE TER.
 import {FiAlertCircle} from 'react-icons/fi';
 import { Container, Error} from './styles';
 import {useField} from '@unform/core'; //RUCK PRA FORM
 
-import Tooltip from '../Tooltip';
 
-
-interface InputProps extends InputHTMLAttributes<HTMLInputElement>{ // TODAS PROPRIEDADE DO INPUT
-    name: string;
-    icon?: React.ComponentType<IconBaseProps>; //ATRIBUTOS NO ICON  PASSANDO PELA PROPS
+// TODAS PROPRIEDADE QUE JÁ EXISTE EM INPUT TRADICIONAL
+interface InputProps extends InputHTMLAttributes<HTMLInputElement>{ 
+      name: string;
+      icon?: React.ComponentType<IconBaseProps>; //PROPS DE ICON.
 }
 
-const Input: React.FC<InputProps> = ({name, icon: Icon, ...rest}) =>{ // PROPS NO INPUT NA PAGINA PRINCIPAL
+//CRIADO COMPONENTE INPUT, 
+const Input: React.FC<InputProps> = ({name, icon: Icon, ...rest}) =>{ //ONDE SÃO PASSADAS AS PROPS
 
     const inputRef = useRef<HTMLInputElement>(null);// SERVE PRA FAZER MANUPULAÇÃO DIRETA NO INPUTT
 
@@ -21,22 +21,21 @@ const Input: React.FC<InputProps> = ({name, icon: Icon, ...rest}) =>{ // PROPS N
 
     const {fieldName, defaultValue, error, registerField} = useField(name);//DADOS QUE SÃO MONITORADOS PELO FORM SIGNUP
 
-    const handleInputFocus =useCallback(()=>{
+    const handleInputFocus = useCallback(()=>{
         setIsFocused(true);
     },[]);
 
-    const handleInputBlue = useCallback(() =>{ //VERIFICANDO SE INPUT ESTA VAZIO.
+    const handleInputBlue =  useCallback(() =>{ //VERIFICANDO SE INPUT ESTA VAZIO.
           setIsFocused(false); 
 
-        if(inputRef.current?.value){ //SE VONTER UM VALUE
+        if(inputRef.current?.value){ //SE TEM ALGUM VALOR
             SetIsFilled(true);
         }else{
             SetIsFilled(false);
         }
 
-        // SetIsFilled(!!inputRef.current?.value);
+        //  SetIsFilled(!!inputRef.current?.value);
     },[]);
-
 
     useEffect(()=>{// ASSIM QUE COMPONENTE FOR EXIBIDO EM TELA
         registerField({
@@ -47,24 +46,26 @@ const Input: React.FC<InputProps> = ({name, icon: Icon, ...rest}) =>{ // PROPS N
     },[fieldName,registerField ]);
     
     return(
+    <Container  isFocused={isFocused} isFilled={isFilled} isErrored={!!error}> 
 
-    <Container isErrored={!!error} isFocused={isFocused} isFilled={isFilled}> 
-        {Icon && <Icon size={20}    />}
+        {Icon && <Icon size={20}/>} {/* SE EXISTIR ICONE */}
+
         <input 
-        onFocus={handleInputFocus} // RECEBEU FOCOS
-        onBlur={handleInputBlue}   //PERDEU FOCOS
+        onFocus={handleInputFocus} // RECEBEU FOCO
+        onBlur={handleInputBlue}   //PERDEU FOCO
         defaultValue={defaultValue} //VALOR PRADÃO
         ref={inputRef}  
         {...rest}
         />
 
         {error && (
+
         <Error title={error}> 
             <FiAlertCircle color="#c53030" size={20}/> 
-        </Error>)}
-
-
+        </Error>
+        )}
    </Container>
+
     )
 }
  
