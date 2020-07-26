@@ -1,5 +1,4 @@
 import styled, {css} from 'styled-components';
-
 import Tooltip  from '../Tooltip';
 
 interface ContainerProps{
@@ -21,6 +20,7 @@ align-items: center;
 & + div {
 margin-top: 8px;
 }
+
 ${props => props.isErrored && css ` /* SE HOUVER FOCUS INSERIR A COR NO INPUT */
     border-color:#C53030; 
 ` }
@@ -34,17 +34,11 @@ ${props => props.isFilled && css ` /* SE HOUVER FOCUS INSERIR A COR NO INPUT */
     color:#ff9000; 
 ` }
 
-
-
-
 input{
 flex: 1;
 background: transparent;
 border:0;
 color:  #F4EDE8;
-
-
-
 &::placeholder{
 color: #666360;
 }
@@ -53,8 +47,6 @@ color: #666360;
 
 svg{
     margin-right: 16px;
-   
-    
 }
 
 `;

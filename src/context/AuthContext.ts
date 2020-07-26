@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import React,{ createContext } from 'react';
 
 interface AuthContextData {
     name: string;
@@ -6,6 +6,8 @@ interface AuthContextData {
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData );
+
+
 
 
 export default AuthContext;

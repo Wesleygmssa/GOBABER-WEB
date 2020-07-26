@@ -15,27 +15,9 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
 const Input: React.FC<InputProps> = ({name, icon: Icon, ...rest}) =>{ //ONDE SÃO PASSADAS AS PROPS
 
     const inputRef = useRef<HTMLInputElement>(null);// SERVE PRA FAZER MANUPULAÇÃO DIRETA NO INPUTT
-
     const [isFocused, setIsFocused] = useState(false); // VERIFICANDO SE RECEBEU FOCO
     const [isFilled, SetIsFilled] = useState(false);   // VERIFICANDO SE NÃO TEM FOCO
-
     const {fieldName, defaultValue, error, registerField} = useField(name);//DADOS QUE SÃO MONITORADOS PELO FORM SIGNUP
-
-    const handleInputFocus = useCallback(()=>{
-        setIsFocused(true);
-    },[]);
-
-    const handleInputBlue =  useCallback(() =>{ //VERIFICANDO SE INPUT ESTA VAZIO.
-          setIsFocused(false); 
-
-        if(inputRef.current?.value){ //SE TEM ALGUM VALOR
-            SetIsFilled(true);
-        }else{
-            SetIsFilled(false);
-        }
-
-        //  SetIsFilled(!!inputRef.current?.value);
-    },[]);
 
     useEffect(()=>{// ASSIM QUE COMPONENTE FOR EXIBIDO EM TELA
         registerField({
@@ -44,16 +26,32 @@ const Input: React.FC<InputProps> = ({name, icon: Icon, ...rest}) =>{ //ONDE SÃ
             path: 'value',// VALUE É VALOR DIGITADO NO INPUNT
         });
     },[fieldName,registerField ]);
-    
+
+    const handleInputFocus = useCallback(()=>{
+        setIsFocused(true);
+    },[]);
+
+    const handleInputBlue =  useCallback(() =>{ // VERIFICANDO SE INPUT ESTA VAZIO.
+           setIsFocused(false); 
+
+        if(inputRef.current?.value){ // SE TEM ALGUM VALOR 
+            SetIsFilled(true); // SE ESTA PREENCHIDO VALOR LOGIVO VERDADEIRO
+        }else{
+            SetIsFilled(false); // VALOR LOGIVO FALSO
+        }
+
+        SetIsFilled(!!inputRef.current?.value);
+    },[]);
+
     return(
     <Container  isFocused={isFocused} isFilled={isFilled} isErrored={!!error}> 
 
         {Icon && <Icon size={20}/>} {/* SE EXISTIR ICONE */}
 
         <input 
-        onFocus={handleInputFocus} // RECEBEU FOCO
-        onBlur={handleInputBlue}   //PERDEU FOCO
-        defaultValue={defaultValue} //VALOR PRADÃO
+        onFocus={handleInputFocus}  //  RECEBEU FOCO
+        onBlur={handleInputBlue}    //  PERDEU FOCO
+        defaultValue={defaultValue} //  VALOR PRADÃO
         ref={inputRef}  
         {...rest}
         />

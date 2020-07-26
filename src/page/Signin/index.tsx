@@ -9,7 +9,7 @@ import { FormHandles } from '@unform/core'; // INTERFACE QUE TEM AS TIPAGENS E T
 import getValidationErrors from '../../utils/getValidationErros'; //FUNCÇÕES UTILS
 import { Container, Content, Background } from './styles'; //ESTILOS
 import * as Yup from 'yup'; //BILIOTECA PARA VALIDAÇOES
-import  AuthContext from '../../context/AuthContext';
+import  AuthContext from '../../context/AuthContext'; //
 
 const SignIn: React.FC = () => {
     const formRef = useRef<FormHandles>(null); //PEGANDO REFERENCIA DO FORMULARIO E TBM PASSANDO A REFENCIA DE TIPAGEM
@@ -24,7 +24,7 @@ const SignIn: React.FC = () => {
                 email:Yup.string()
                 .required('E-mail obrigatório')
                 .email('Digite um e-mail válido'),
-                password:Yup.string().min(6,'No mínimo 6 dígitos'),
+                password: Yup.string().min(6,'No mínimo 6 dígitos'),
             });
    
             await schema.validate(data,{abortEarly:false}); // VERIFICANDO A VALIDAÇÃO DOS DADOS ESRÃO CORRETA.
@@ -34,8 +34,7 @@ const SignIn: React.FC = () => {
                const errors = getValidationErrors(err);
                formRef.current?.setErrors(errors);
            }  
-    },[])
-    
+    },[]);
     return(
         <Container>
             <Content>

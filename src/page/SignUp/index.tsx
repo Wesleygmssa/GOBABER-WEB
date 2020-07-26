@@ -15,7 +15,7 @@ import Input from '../../components/Input';    //SEPRANDO POR COMPENTENTE
 import { Container, Content, Background } from './styles';
 
 
-const SignUp: React.FC = () => {
+const SignUp: React.FC = () => { //Inscrever-se components 
     const formRef = useRef<FormHandles>(null); //PEGAND REFERENCIA DO FORMULARIO
  
 
