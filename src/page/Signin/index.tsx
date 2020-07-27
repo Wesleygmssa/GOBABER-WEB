@@ -1,4 +1,3 @@
-
 import React,{useRef, useCallback, useContext} from 'react';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import logoImg from '../../assets/logo.svg';
@@ -9,18 +8,18 @@ import { FormHandles } from '@unform/core'; // INTERFACE QUE TEM AS TIPAGENS E T
 import getValidationErrors from '../../utils/getValidationErros'; //FUNCÇÕES UTILS
 import { Container, Content, Background } from './styles'; //ESTILOS
 import * as Yup from 'yup'; //BILIOTECA PARA VALIDAÇOES
-import  AuthContext from '../../context/AuthContext'; //
+import  {AuthContext} from '../../context/AuthContext'; //
 
 const SignIn: React.FC = () => {
-    const formRef = useRef<FormHandles>(null); //PEGANDO REFERENCIA DO FORMULARIO E TBM PASSANDO A REFENCIA DE TIPAGEM
-    const {name} = useContext(AuthContext);
-    console.log(name);
+    const formRef = useRef<FormHandles>(null); // PEGANDO REFERENCIA DO FORMULARIO E TBM PASSANDO A REFENCIA DE TIPAGEM
+    const { signIn } = useContext(AuthContext);    // ACESSO A INFORMAÇÃO DE AUTENTICAÇÃO, PEGANDO INFORMAÇÃO DO CONTEXTO
+    //  console.log(name);
 
     const handleSubmit = useCallback(async(data: object)=>{
         try {
-           formRef.current?.setErrors({});
+             formRef.current?.setErrors({});
           
-            const schema = Yup.object().shape({   //VALIDAÇÃO USANDO YUP
+            const schema = Yup.object().shape({   //ESQUEMA DE VALIDAÇÃO (SCHEMA)
                 email:Yup.string()
                 .required('E-mail obrigatório')
                 .email('Digite um e-mail válido'),
@@ -28,13 +27,14 @@ const SignIn: React.FC = () => {
             });
    
             await schema.validate(data,{abortEarly:false}); // VERIFICANDO A VALIDAÇÃO DOS DADOS ESRÃO CORRETA.
-            
+            signIn();
         } catch (err) {
-
-               const errors = getValidationErrors(err);
-               formRef.current?.setErrors(errors);
+                //  console.log(err)
+                 const errors = getValidationErrors(err);
+                formRef.current?.setErrors(errors);
            }  
-    },[]);
+    },[signIn]);
+
     return(
         <Container>
             <Content>
@@ -54,9 +54,7 @@ const SignIn: React.FC = () => {
                     icon={FiLock}  //ENVIADO ICONE PELA PROPS
                     type="password"
                     placeholder="Senha" 
-                 
                     />
-    
                     <Button 
                     type="submit"
                     > 

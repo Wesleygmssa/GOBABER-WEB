@@ -4,21 +4,16 @@ import { Form} from '@unform/web'; //
 import {FormHandles} from '@unform/core';
 import * as Yup from 'yup';
 import getValidationErrors from '../../utils/getValidationErros';
-
-
-
 import Button from '../../components/Button';  //SEPRANDO POR COMPONENTE
 import logoImg from '../../assets/logo.svg';
-
 import Input from '../../components/Input';    //SEPRANDO POR COMPENTENTE
-
 import { Container, Content, Background } from './styles';
 
 
-const SignUp: React.FC = () => { //Inscrever-se components 
+const SignUp: React.FC = () => { 
+
     const formRef = useRef<FormHandles>(null); //PEGAND REFERENCIA DO FORMULARIO
  
-
  const handleSubmit = useCallback(async(data: object)=>{
      try {
         formRef.current?.setErrors({})
@@ -46,8 +41,9 @@ const SignUp: React.FC = () => { //Inscrever-se components
             <Background />
             <Content>
                 <img src={logoImg} alt="GoBarber" />
-    
-                <Form  ref={formRef}  onSubmit={handleSubmit}> {/* DADOS SÃO PASSADOS PELO (useField)  */}
+                
+                {/* DADOS SÃO PASSADOS PELO (useField)  @unform/core*/}
+                <Form  ref={formRef}  onSubmit={handleSubmit}> 
     
                     <h1>Faça seu cadastro</h1>
     

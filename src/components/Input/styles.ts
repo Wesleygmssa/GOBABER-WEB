@@ -21,16 +21,16 @@ align-items: center;
 margin-top: 8px;
 }
 
-${props => props.isErrored && css ` /* SE HOUVER FOCUS INSERIR A COR NO INPUT */
+${props => props.isErrored && css `
     border-color:#C53030; 
 ` }
 
-${props => props.isFocused && css ` /* SE HOUVER FOCUS INSERIR A COR NO INPUT */
+${props => props.isFocused && css ` 
     color:#ff9000;
     border-color: #ff9000;
 ` }
 
-${props => props.isFilled && css ` /* SE HOUVER FOCUS INSERIR A COR NO INPUT */
+${props => props.isFilled && css ` 
     color:#ff9000; 
 ` }
 
@@ -54,6 +54,7 @@ svg{
 export const Error = styled(Tooltip)`
 height: 20px;
 margin-left: 16px;
+
  svg{
      margin:0;
  }

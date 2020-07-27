@@ -14,16 +14,19 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
 //CRIADO COMPONENTE INPUT, 
 const Input: React.FC<InputProps> = ({name, icon: Icon, ...rest}) =>{ //ONDE SÃO PASSADAS AS PROPS
 
-    const inputRef = useRef<HTMLInputElement>(null);// SERVE PRA FAZER MANUPULAÇÃO DIRETA NO INPUTT
-    const [isFocused, setIsFocused] = useState(false); // VERIFICANDO SE RECEBEU FOCO
-    const [isFilled, SetIsFilled] = useState(false);   // VERIFICANDO SE NÃO TEM FOCO
-    const {fieldName, defaultValue, error, registerField} = useField(name);//DADOS QUE SÃO MONITORADOS PELO FORM SIGNUP
+    // SERVE PRA FAZER MANUPULAÇÃO DIRETA NO INPUTT
+    const inputRef = useRef<HTMLInputElement>(null);
+    const [isFocused, setIsFocused] = useState(false); 
+    const [isFilled, SetIsFilled] = useState(false);  
 
-    useEffect(()=>{// ASSIM QUE COMPONENTE FOR EXIBIDO EM TELA
+    //DADOS QUE SÃO MONITORADOS PELO FORM SIGNUP
+    const {fieldName, defaultValue, error, registerField} = useField(name);
+
+    useEffect(()=>{                        //   ASSIM QUE COMPONENTE FOR EXIBIDO EM TELA
         registerField({
-            name: fieldName, // NAME NO INPUT
-            ref: inputRef.current, // \ACESSO AO INPUNT NO HTML
-            path: 'value',// VALUE É VALOR DIGITADO NO INPUNT
+            name: fieldName,               //   NAME NO INPUT
+            ref: inputRef.current,         //   ACESSO AO INPUNT NO HTML
+            path: 'value',                 //   VALUE É VALOR DIGITADO NO INPUNT
         });
     },[fieldName,registerField ]);
 
@@ -31,16 +34,17 @@ const Input: React.FC<InputProps> = ({name, icon: Icon, ...rest}) =>{ //ONDE SÃ
         setIsFocused(true);
     },[]);
 
-    const handleInputBlue =  useCallback(() =>{ // VERIFICANDO SE INPUT ESTA VAZIO.
+    const handleInputBlue =  useCallback(() =>{ 
            setIsFocused(false); 
 
-        if(inputRef.current?.value){ // SE TEM ALGUM VALOR 
-            SetIsFilled(true); // SE ESTA PREENCHIDO VALOR LOGIVO VERDADEIRO
+        // VERIFICANDO SE INPUT ESTA VAZIO.
+        if(inputRef.current?.value){ 
+            SetIsFilled(true); 
         }else{
-            SetIsFilled(false); // VALOR LOGIVO FALSO
+            SetIsFilled(false); 
         }
 
-        SetIsFilled(!!inputRef.current?.value);
+        // SetIsFilled(!!inputRef.current?.value);
     },[]);
 
     return(
@@ -55,9 +59,8 @@ const Input: React.FC<InputProps> = ({name, icon: Icon, ...rest}) =>{ //ONDE SÃ
         ref={inputRef}  
         {...rest}
         />
-
-        {error && (
-
+ 
+        {error && ( // SE OUVER ERRO COLOCAR A ICONE
         <Error title={error}> 
             <FiAlertCircle color="#c53030" size={20}/> 
         </Error>
