@@ -1,4 +1,4 @@
-import styled from 'styled-components'; // TARABLHANDO COM CSS
+import styled,{keyframes} from 'styled-components'; // TARABLHANDO COM CSS
 import signInBackgroundImg from '../../assets/sign-in-background.png';
 import { shade }  from  'polished';// TRABALHANDO COM CORES
 
@@ -13,12 +13,31 @@ export const Content = styled.div `
     display: flex;
     flex-direction: column;
     align-items: center;
-    place-content: center; /* centro */
-
+    justify-content: center; /* centro */ 
     width:100%;
     max-width: 700px;
+` ;
 
-    form {
+const appearFromLeft = keyframes `
+    from{
+        opacity: 0;
+        transform: translateX(-50px);
+    }to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+`
+
+export const AimationContainer = styled.div `
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* centro */
+
+    animation: ${appearFromLeft} 1s;
+
+form {
         margin: 80px 0;
         width: 340px;
         text-align:center;
@@ -60,7 +79,8 @@ export const Content = styled.div `
                 
             }
     }
-` ;
+
+`
 
 export const Background = styled.div `
     flex: 1;

@@ -21,7 +21,7 @@ const [messages, setMessages ] = useState<ToastMessage[]>([]);
 const addToast = useCallback(({type, title, description}: Omit<ToastMessage, 'id' >)=>{
     const id = uuid();
 
-    const toast =  {
+    const toast = {
         id,
         type,
         title,
@@ -54,4 +54,4 @@ function useToast():ToastContextData {
     return context
 }
 
-export {Toastprovider,useToast }
+export {Toastprovider,useToast}

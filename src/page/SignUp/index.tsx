@@ -7,7 +7,8 @@ import getValidationErrors from '../../utils/getValidationErros';
 import Button from '../../components/Button';  //SEPRANDO POR COMPONENTE
 import logoImg from '../../assets/logo.svg';
 import Input from '../../components/Input';    //SEPRANDO POR COMPENTENTE
-import { Container, Content, Background } from './styles';
+import { Container, Content, AimationContainer, Background } from './styles';
+import {Link} from 'react-router-dom'
 
 
 const SignUp: React.FC = () => { 
@@ -40,6 +41,7 @@ const SignUp: React.FC = () => {
         <Container>
             <Background />
             <Content>
+                <AimationContainer>
                 <img src={logoImg} alt="GoBarber" />
                 
                 {/* DADOS SÃO PASSADOS PELO (useField)  @unform/core*/}
@@ -55,10 +57,12 @@ const SignUp: React.FC = () => {
     
                 </Form>
     
-                <a href="">
+                <Link to="/">
                     <FiArrowLeft />
                     Voltar para logon
-                </a>
+                </Link>
+                </AimationContainer>
+               
             </Content>
     
         </Container>

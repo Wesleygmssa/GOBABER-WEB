@@ -6,10 +6,11 @@ import Button from '../../components/Button';  //SEPRANDO POR COMPONENTE
 import { Form } from '@unform/web'; //BLIBLIOTECA FORM
 import { FormHandles } from '@unform/core'; // INTERFACE QUE TEM AS TIPAGENS E TODOAS A FUNÇÕES.
 import getValidationErrors from '../../utils/getValidationErros'; //FUNCÇÕES UTILS
-import { Container, Content, Background } from './styles'; //ESTILOS
+import { Container, Content, AimationContainer, Background } from './styles'; //ESTILOS
 import * as Yup from 'yup'; //BILIOTECA PARA VALIDAÇOES
 import { useAuth } from '../../hooks/Auth'; //
-import {useToast} from '../../hooks/Toast'
+import { useToast } from '../../hooks/Toast';
+import { Link, useHistory } from 'react-router-dom';
 
 
 interface SignInFormData {
@@ -19,8 +20,8 @@ interface SignInFormData {
 
 const SignIn: React.FC = () => {
     const formRef = useRef<FormHandles>(null);  // PEGANDO REFERENCIA DO FORMULARIO E TBM PASSANDO A REFENCIA DE TIPAGEM
-    const { user,  signIn } = useAuth(); // ACESSO A INFORMAÇÃO DE AUTENTICAÇÃO, PEGANDO INFORMAÇÃO DO CONTEXTO
-    const {addToast} = useToast();
+    const { user, signIn } = useAuth(); // ACESSO A INFORMAÇÃO DE AUTENTICAÇÃO, PEGANDO INFORMAÇÃO DO CONTEXTO
+    const { addToast } = useToast();
 
     const handleSubmit = useCallback(async (data: SignInFormData) => {
         try {
@@ -35,12 +36,14 @@ const SignIn: React.FC = () => {
 
             await schema.validate(data, { abortEarly: false }); // VERIFICANDO A VALIDAÇÃO DOS DADOS ESRÃO CORRETA.
 
-         await signIn({ email: data.email, password: data.password });
-        
+            await signIn({ email: data.email, password: data.password });
+
         } catch (err) {
-            if(err instanceof Yup.ValidationError){
+            if (err instanceof Yup.ValidationError) {
                 const errors = getValidationErrors(err);
                 formRef.current?.setErrors(errors);
+
+                return;
             }
             addToast({
                 type: 'error',
@@ -53,34 +56,36 @@ const SignIn: React.FC = () => {
     return (
         <Container>
             <Content>
-                <img src={logoImg} alt="GoBarber" />
+                <AimationContainer>
+                    <img src={logoImg} alt="GoBarber" />
 
-                <Form ref={formRef} onSubmit={handleSubmit}>
-                    <h1>Faça seu logon</h1>
+                    <Form ref={formRef} onSubmit={handleSubmit}>
+                        <h1>Faça seu logon</h1>
 
-                    <Input
-                        name="email"
-                        icon={FiMail}
-                        placeholder="E-mail"
-                    />
+                        <Input
+                            name="email"
+                            icon={FiMail}
+                            placeholder="E-mail"
+                        />
 
-                    <Input
-                        name="password"
-                        icon={FiLock}  //ENVIADO ICONE PELA PROPS
-                        type="password"
-                        placeholder="Senha"
-                    />
-                    <Button type="submit">
-                        Entrar
+                        <Input
+                            name="password"
+                            icon={FiLock}  //ENVIADO ICONE PELA PROPS
+                            type="password"
+                            placeholder="Senha"
+                        />
+                        <Button type="submit">
+                            Entrar
                     </Button>
 
-                    <a href="forgot">Esqueci minha senha</a>
-                </Form>
+                        <a href="forgot">Esqueci minha senha</a>
+                    </Form>
 
-                <a href="">
-                    <FiLogIn />
+                    <Link to="/signup">
+                        <FiLogIn />
                     Criar conta
-                </a>
+                </Link>
+                </AimationContainer>
             </Content>
             <Background />
         </Container>
