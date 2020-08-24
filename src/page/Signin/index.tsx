@@ -22,6 +22,7 @@ const SignIn: React.FC = () => {
     const formRef = useRef<FormHandles>(null);  // PEGANDO REFERENCIA DO FORMULARIO E TBM PASSANDO A REFENCIA DE TIPAGEM
     const { user, signIn } = useAuth(); // ACESSO A INFORMAÇÃO DE AUTENTICAÇÃO, PEGANDO INFORMAÇÃO DO CONTEXTO
     const { addToast } = useToast();
+    const history = useHistory();
 
     const handleSubmit = useCallback(async (data: SignInFormData) => {
         try {
@@ -38,6 +39,13 @@ const SignIn: React.FC = () => {
 
             await signIn({ email: data.email, password: data.password });
 
+            history.push('/');
+
+            addToast({
+                type: 'success',
+                title: 'Bem vindo, ao Gobaber',
+            });
+
         } catch (err) {
             if (err instanceof Yup.ValidationError) {
                 const errors = getValidationErrors(err);
@@ -51,7 +59,7 @@ const SignIn: React.FC = () => {
                 description: 'Ocerreu um erro ao ao fazer login, cheque as credenciais.',
             });
         }
-    }, [signIn, addToast]);
+    }, [signIn, addToast, history]);
 
     return (
         <Container>
