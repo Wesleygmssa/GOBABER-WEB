@@ -66,6 +66,8 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
       />
       {error && ( // SE OUVER ERRO COLOCAR A ICONE
         <Error title={error}>
+          {" "}
+          {/* tooltip  importado nos estilos*/}
           <FiAlertCircle color="#c53030" size={20} />
         </Error>
       )}
