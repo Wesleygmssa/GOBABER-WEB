@@ -4,7 +4,6 @@ import Route from "./Route";
 
 import SignIn from "../page/Signin";
 import SignUp from "../page/SignUp";
-
 import Dashboard from "../page/Dashboard";
 
 const Routes: React.FC = () => {
