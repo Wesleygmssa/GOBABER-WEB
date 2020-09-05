@@ -18,8 +18,13 @@ interface SignInFormData {
 }
 
 const SignIn: React.FC = () => {
-  const formRef = useRef<FormHandles>(null); // PEGANDO REFERENCIA DO FORMULARIO E TBM PASSANDO A REFENCIA DE TIPAGEM
-  const { user, signIn } = useAuth(); // ACESSO A INFORMAÇÃO DE AUTENTICAÇÃO, PEGANDO INFORMAÇÃO DO CONTEXTO
+  // PEGANDO REFERENCIA DO FORMULARIO E TBM PASSANDO A REFENCIA DE TIPAGEM
+  const formRef = useRef<FormHandles>(null);
+
+  // ACESSO A INFORMAÇÃO DE AUTENTICAÇÃO, PEGANDO INFORMAÇÃO DO CONTEXTO
+  const { user, signIn } = useAuth();
+
+  //Acessando toast como hooks
   const { addToast } = useToast();
   const history = useHistory();
 
@@ -37,8 +42,8 @@ const SignIn: React.FC = () => {
         });
 
         await schema.validate(data, { abortEarly: false }); // VERIFICANDO A VALIDAÇÃO DOS DADOS ESRÃO CORRETA.
-
-        await signIn({ email: data.email, password: data.password });
+        const { email, password } = data;
+        await signIn({ email, password });
 
         history.push("/");
 
