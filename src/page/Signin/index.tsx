@@ -23,7 +23,7 @@ const SignIn: React.FC = () => {
 
   // ACESSO A INFORMAÇÃO DE AUTENTICAÇÃO, PEGANDO INFORMAÇÃO DO CONTEXTO
   const { user, signIn } = useAuth();
-
+  console.log(user);
   //Acessando toast como hooks
   const { addToast } = useToast();
   const history = useHistory();
