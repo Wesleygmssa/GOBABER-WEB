@@ -42,6 +42,7 @@ const SignIn: React.FC = () => {
 
         await schema.validate(data, { abortEarly: false }); //validation
         const { email, password } = data;
+
         await signIn({ email, password });
 
         history.push("/");
@@ -57,6 +58,7 @@ const SignIn: React.FC = () => {
 
           return;
         }
+
         addToast({
           type: "error",
           title: "error na autenticação",
