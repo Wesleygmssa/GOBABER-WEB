@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useContext } from "react";
+import React, { useRef, useCallback } from "react";
 import { FiLogIn, FiMail, FiLock } from "react-icons/fi";
 import logoImg from "../../assets/logo.svg";
 import Input from "../../components/Input";
@@ -23,7 +23,6 @@ const SignIn: React.FC = () => {
 
   // ACESSO A INFORMAÇÃO DE AUTENTICAÇÃO, PEGANDO INFORMAÇÃO DO CONTEXTO
   const { user, signIn } = useAuth();
-  console.log(user);
   //Acessando toast como hooks
   const { addToast } = useToast();
   const history = useHistory();
@@ -33,15 +32,15 @@ const SignIn: React.FC = () => {
       try {
         formRef.current?.setErrors({});
 
+        // ESQUEMA DE VALIDAÇÃO (SCHEMA)
         const schema = Yup.object().shape({
-          // ESQUEMA DE VALIDAÇÃO (SCHEMA)
           email: Yup.string()
             .required("E-mail obrigatório")
             .email("Digite um e-mail válido"),
           password: Yup.string().min(6, "No mínimo 6 dígitos"),
         });
 
-        await schema.validate(data, { abortEarly: false }); // VERIFICANDO A VALIDAÇÃO DOS DADOS ESRÃO CORRETA.
+        await schema.validate(data, { abortEarly: false }); //validation
         const { email, password } = data;
         await signIn({ email, password });
 
