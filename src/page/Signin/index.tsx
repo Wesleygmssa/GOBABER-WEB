@@ -45,7 +45,7 @@ const SignIn: React.FC = () => {
 
         await signIn({ email, password });
 
-        history.push("/");
+        history.push("/dashboard");
 
         addToast({
           type: "success",

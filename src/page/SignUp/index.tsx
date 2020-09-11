@@ -39,7 +39,7 @@ const SignUp: React.FC = () => {
 
         await schema.validate(data, { abortEarly: false });
 
-        await api.post("/users", data);
+        await api.post("/users", data); // fazendo cadastro
 
         history.push("/");
 
@@ -76,7 +76,13 @@ const SignUp: React.FC = () => {
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Faça seu cadastro</h1>
 
-            <Input name="name" icon={FiUser} placeholder="Nome" />
+            <Input
+
+              name="name"
+              icon={FiUser}
+              placeholder="Nome"
+            />
+
             <Input
               name="email"
               icon={FiMail}
