@@ -23,6 +23,7 @@ const SignIn: React.FC = () => {
 
   // ACESSO A INFORMAÇÃO DE AUTENTICAÇÃO, PEGANDO INFORMAÇÃO DO CONTEXTO
   const { user, signIn } = useAuth();
+
   //Acessando toast como hooks
   const { addToast } = useToast();
   const history = useHistory();
@@ -52,7 +53,9 @@ const SignIn: React.FC = () => {
           title: "Bem vindo, ao Gobaber",
         });
       } catch (err) {
+
         if (err instanceof Yup.ValidationError) {
+
           const errors = getValidationErrors(err);
           formRef.current?.setErrors(errors);
 
