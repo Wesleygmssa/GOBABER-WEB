@@ -8,8 +8,8 @@ import { FormHandles } from "@unform/core"; // INTERFACE QUE TEM AS TIPAGENS E T
 import getValidationErrors from "../../utils/getValidationErros"; //FUNCÇÕES UTILS
 import { Container, Content, AimationContainer, Background } from "./styles";
 import * as Yup from "yup"; //BILIOTECA PARA VALIDAÇOES
-import { useAuth } from "../../hooks/Auth"; //
-import { useToast } from "../../hooks/Toast";
+import { useAuth } from "../../hooks/auth"; //
+import { useToast } from "../../hooks/toast";
 import { Link, useHistory } from "react-router-dom";
 
 interface SignInFormData {
@@ -53,9 +53,7 @@ const SignIn: React.FC = () => {
           title: "Bem vindo, ao Gobaber",
         });
       } catch (err) {
-
         if (err instanceof Yup.ValidationError) {
-
           const errors = getValidationErrors(err);
           formRef.current?.setErrors(errors);
 

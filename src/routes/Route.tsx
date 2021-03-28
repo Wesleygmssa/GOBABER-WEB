@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth } from "../hooks/Auth";
+import { useAuth } from "../hooks/auth";
 import {
   RouteProps as ReactDOMRouterProps,
   Route as ReactDOMRouter,

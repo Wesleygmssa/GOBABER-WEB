@@ -10,7 +10,7 @@ import Input from "../../components/Input"; //SEPRANDO POR COMPENTENTE
 import { Container, Content, AimationContainer, Background } from "./styles";
 import { Link, useHistory } from "react-router-dom";
 import api from "../../services/api";
-import { useToast } from "../../hooks/Toast";
+import { useToast } from "../../hooks/toast";
 
 interface SignUpFormData {
   name: string;
@@ -76,12 +76,7 @@ const SignUp: React.FC = () => {
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Faça seu cadastro</h1>
 
-            <Input
-
-              name="name"
-              icon={FiUser}
-              placeholder="Nome"
-            />
+            <Input name="name" icon={FiUser} placeholder="Nome" />
 
             <Input
               name="email"

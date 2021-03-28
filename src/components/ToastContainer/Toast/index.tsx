@@ -6,7 +6,7 @@ import {
   FiCheckCircle,
   FiInfo,
 } from "react-icons/fi";
-import { ToastMessage, useToast } from "../../../hooks/Toast";
+import { ToastMessage, useToast } from "../../../hooks/toast";
 
 interface ToastProps {
   message: ToastMessage;
